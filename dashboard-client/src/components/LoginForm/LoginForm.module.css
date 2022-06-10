@@ -1,0 +1,41 @@
+.container{
+    min-width: 400px;
+}
+form{
+    width: 100%;
+}
+.inputGroup{
+    margin-bottom: 1.4rem;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+}
+.inputGroup:last-of-type{
+    margin-bottom: 60px;
+}
+label, input{
+    display: block;    
+    color: #8d8c8c;    
+}
+label {
+    font-weight:600; 
+}
+
+input{
+    border: none;
+    border-bottom: 3px solid #6ba8c8;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    width: 100%;
+}
+input:focus-visible{
+    outline: none;
+}
+
+button{
+    background-color: #4aacff;
+    color: white;
+    border: none;
+    width: 100%;
+    min-height: 40px;
+    font-size: 1.2rem;
+}
