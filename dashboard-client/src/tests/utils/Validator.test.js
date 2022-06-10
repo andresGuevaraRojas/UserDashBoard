@@ -17,13 +17,13 @@ describe("Test for Validator",()=>{
     })
 
 
-    test('return true with a password greather 8 characters',()=>{
-        const password = 'Adfsdjgnj33322'
+    test('return true with a password greather or equals than 8 characters',()=>{
+        const password = '12345678'
         expect(isValidPassword(password)).toBe(true)
     })
 
     test('return false with less than 8 characters',()=>{
-        const password = 'fg3352f'
+        const password = '123456'
         expect(isValidPassword(password)).toBe(false)
     })
 
