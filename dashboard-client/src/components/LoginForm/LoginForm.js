@@ -37,7 +37,12 @@ function LoginForm({className,onFinish}){
             setInputs({...inputs,password:passwordData})         
             return
         }
-        await onFinish(inputs);
+
+        const emailValue = inputs.email.value;
+        const passwordValue = inputs.password.value;        
+
+        const inputsValue = {email:emailValue,password:passwordValue}
+        await onFinish(inputsValue);        
     }
     return(
         <div className={`${style.container} ${className}`}>

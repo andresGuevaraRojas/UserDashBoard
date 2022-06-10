@@ -46,7 +46,13 @@ function CreateAccounForm({ className,onFinish }) {
             setInputs({...inputs,confirmPassword:passwordData})         
             return
         }
-        await onFinish(inputs);
+
+        const emailValue = inputs.email.value;
+        const passwordValue = inputs.password.value;
+        const confirmPasswordValue = inputs.confirmPassword.value;
+
+        const inputsValue = {email:emailValue,password:passwordValue,confirmPassword:confirmPasswordValue}
+        await onFinish(inputsValue);
     }
     return (
         <div className={`${style.container} ${className}`}>
