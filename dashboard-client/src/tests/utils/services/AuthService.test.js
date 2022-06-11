@@ -1,4 +1,4 @@
-import AuthService from "../../services/AuthService";
+import AuthService from "../../../services/AuthService";
 
 describe("Test for AuthService class",()=>{    
     test("Login",()=>{
@@ -6,19 +6,19 @@ describe("Test for AuthService class",()=>{
             {
                 name:'Steve Derbez',
                 email:'steder@contoso.com',
-                pasword:'12345678'
+                password:'12345678'
             },
             {
                 name:'michael diaz',
                 email:'diaz1998@contoso',
-                pasword:'qwertyuio'
+                password:'qwertyuio'
             }
         ];
 
         const user = AuthService.login(users,'diaz1998@contoso','qwertyuio');
 
         expect(user.name).toBe('michael diaz');
-        expect(user.email).toBe('email','diaz1998@contoso')
+        expect(user.email).toBe('diaz1998@contoso')
     })
 
     test("Create account",()=>{        
