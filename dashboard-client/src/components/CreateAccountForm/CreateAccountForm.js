@@ -14,6 +14,10 @@ function CreateAccounForm({ className,onFinish }) {
         confirmPassword:{
             value:'',
             error:null
+        },
+        name:{
+            value:'',
+            error:null
         }
     })
 
@@ -40,6 +44,11 @@ function CreateAccounForm({ className,onFinish }) {
             setInputs({...inputs,password:passwordData})         
             return
         }
+        if(inputs.name.value.trim() === ''){
+            const nameData = {...inputs.name,error:'Campo obligatorio'}
+            setInputs({...inputs,name:nameData})         
+            return
+        }
 
         if(inputs.password.value !== inputs.confirmPassword.value){
             const passwordData = {...inputs.confirmPassword,error:'Los campos de contraseña no coinciden'}
@@ -50,8 +59,14 @@ function CreateAccounForm({ className,onFinish }) {
         const emailValue = inputs.email.value;
         const passwordValue = inputs.password.value;
         const confirmPasswordValue = inputs.confirmPassword.value;
+        const nameValue = inputs.name.value;
 
-        const inputsValue = {email:emailValue,password:passwordValue,confirmPassword:confirmPasswordValue}
+        const inputsValue = {
+            email:emailValue,
+            password:passwordValue,
+            confirmPassword:confirmPasswordValue,
+            name:nameValue
+        }
         await onFinish(inputsValue);
     }
     return (
@@ -99,8 +114,21 @@ function CreateAccounForm({ className,onFinish }) {
                             inputs.confirmPassword.error &&
                             <span className={style.error}>{inputs.confirmPassword.error}</span>
                         }
-                    </div>
+                    </div>                    
                 </div>                
+                <div className={style.inputGroup}>
+                    <label htmlFor="name">Contraseña</label>
+                    <input                        
+                        placeholder="Nombre completo"
+                        name="name"
+                        value={inputs.name.value}
+                        onChange={handleChange}
+                    />
+                    {
+                        inputs.name.error &&
+                        <span className={style.error}>{inputs.name.error}</span>
+                    }
+                </div>
                 <button type='submit' formNoValidate>Registrarme</button>
             </form>
         </div>
