@@ -1,5 +1,5 @@
 class AuthService{
-    static login(users,email,password){
+    static async login(users,email,password){
         const user = users.find(user=>
             user.email === email && 
             user.password === password
@@ -8,7 +8,7 @@ class AuthService{
         return user;
     }
 
-    static createAccount(email,password,confirmPassword,name){
+    static async createAccount(email,password,confirmPassword,name){
         const newUser = {
             email:email,
             password:password,          
