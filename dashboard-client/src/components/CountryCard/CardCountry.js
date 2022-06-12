@@ -1,8 +1,8 @@
 import Card from "../Card/Card";
 import style from "./CardCountry.module.css";
-function CardCountry({header,img,name}) {
+function CardCountry({header,img,name,onClick}) {
     return (
-        <Card header={header}>
+        <Card header={header} onClick={onClick}>
             <div className={style.container}>                
                 <div className={style.countryContainer}>
                     <span className={style.name}>{name}</span>                    

@@ -27,10 +27,21 @@ function DashBoardMain() {
     const [selectedCountry,setSelectedCountry] = useState('MX');
     const [selectedTimeZone,setSelectedTimeZone] = useState(null);
 
-    const countriesNames = countryCodes.map(country=>({
+    const countriesData = countryCodes.map(country=>({
         name:country['Country Name'],
+        countryCode:country['Country Code'],
         img:`https://countryflagsapi.com/png/${country["Country Code"]}`
     }));
+
+    const getCountryNameByCountryCode = (countries,code)=>{
+        const country = countries.find(country=>country.countryCode === code);
+        return country.name;
+    }
+
+    const getCountryFlagByCountryCode = (countries,code)=>{
+        const country = countries.find(country=>country.countryCode === code);
+        return country.img;
+    }
 
     const timeZonesName = (timeZones)=>{
         return timeZones.map(timeZone=>timeZone.zoneName)
@@ -62,15 +73,15 @@ function DashBoardMain() {
                 <div className={style.informationColumn}> 
                     <CardCountry 
                         header={'Pais seleccionado'}
-                        name={'México'}             
-                        img={mexicoFlag}           
+                        name={getCountryNameByCountryCode(countriesData,selectedCountry)}             
+                        img={getCountryFlagByCountryCode(countriesData,selectedCountry)}           
                     />
                     <CardHour header={'Hora'} hour={'11:15:15 P.M'}/>
                     <CardTimeZones header={'Zonas horarias disponibles'} timeZones={timeZonesName(timeZones)}/>
                 </div>
             </div>
             <div className={`${style.item} ${style.countriesContainer}`}>
-                <CardCountries header={'Paises disponibles'} countries={countriesNames}/>
+                <CardCountries header={'Paises disponibles'} countries={countriesData} onClick={(country)=>setSelectedCountry(country.countryCode)}/>
             </div>
         </main>
     )
