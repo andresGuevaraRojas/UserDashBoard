@@ -22,36 +22,58 @@ function DashBoardMain() {
         'Debugger codigo',
         'Realizar pruebas unitarias'
     ];
-    const [timeZones,setTimeZones] = useState([]);
-
-    const [selectedCountry,setSelectedCountry] = useState('MX');
-    const [selectedTimeZone,setSelectedTimeZone] = useState(null);
-
     const countriesData = countryCodes.map(country=>({
         name:country['Country Name'],
         countryCode:country['Country Code'],
         img:`https://countryflagsapi.com/png/${country["Country Code"]}`
     }));
 
-    const getCountryNameByCountryCode = (countries,code)=>{
+    const getCountryDataByCountryCode = (countries,code)=>{
         const country = countries.find(country=>country.countryCode === code);
+        return country;
+    }
+    const getCountryNameByCountryCode = (countries,code)=>{
+        const country = getCountryDataByCountryCode(countries,code);
         return country.name;
     }
-
     const getCountryFlagByCountryCode = (countries,code)=>{
-        const country = countries.find(country=>country.countryCode === code);
+        const country = getCountryDataByCountryCode(countries,code);
         return country.img;
     }
 
     const timeZonesName = (timeZones)=>{
         return timeZones.map(timeZone=>timeZone.zoneName)
     }
-    useEffect(()=>{
+    const getDefaultTimeZoneOfCountry = (countryCode,timeZones)=>{        
+        if(countryCode == 'MX'){
+            return 'America/Mexico_City';
+        }
+        const timeZone = timeZones[0];                
+        return timeZone.zoneName;
+    }
 
+    const formatHour = (hour)=>{
+        const date = new Date(hour).toLocaleString();
+        const parts = date.split(', ');
+        return parts[1];
+    }
+    
+    const [timeZones,setTimeZones] = useState([]);
+
+    const [selectedCountry,setSelectedCountry] = useState('MX');
+    const [selectedTimeZone,setSelectedTimeZone] = useState(null);
+    const [hour,setHour] = useState(null);
+
+    
+        
+    useEffect(()=>{
         const fechData = async()=>{
-            const timeZonesList = await TimeZonesService.getTimeZonesByCountryCode(selectedCountry);
-            console.log(timeZonesList);
+            const timeZonesList = await TimeZonesService.getTimeZonesByCountryCode(selectedCountry);                
+            const defaultTimeZone = getDefaultTimeZoneOfCountry(selectedCountry,timeZonesList);
+            const hourTimeZone = await TimeZonesService.getTimeZoneByZone(defaultTimeZone);
             setTimeZones(timeZonesList);
+            setSelectedTimeZone(defaultTimeZone);            
+            setHour(hourTimeZone);
         }
         fechData()     
     },[selectedCountry])
@@ -76,7 +98,7 @@ function DashBoardMain() {
                         name={getCountryNameByCountryCode(countriesData,selectedCountry)}             
                         img={getCountryFlagByCountryCode(countriesData,selectedCountry)}           
                     />
-                    <CardHour header={'Hora'} hour={'11:15:15 P.M'}/>
+                    <CardHour header={'Hora'} hour={formatHour(hour)}/>
                     <CardTimeZones header={'Zonas horarias disponibles'} timeZones={timeZonesName(timeZones)}/>
                 </div>
             </div>

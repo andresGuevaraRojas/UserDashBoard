@@ -12,6 +12,17 @@ class TimeZonesService{
         
         return timeZonesResponse.zones;
     }
+
+    static async getTimeZoneByZone(zone){
+        const request = await fetch(
+            `${this.BasePath}/get-time-zone?key=${this.ApiKey}&format=json&by=zone&zone=${zone}`,
+            {method:'GET'}
+        )
+
+        const timeZonesResponse = await request.json()
+        
+        return timeZonesResponse.formatted;
+    }
 }
 
 export default TimeZonesService;
