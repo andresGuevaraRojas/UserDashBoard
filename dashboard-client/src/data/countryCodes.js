@@ -1,4 +1,4 @@
-[
+const countryCodes = [
     {
       "Country Code": "AF",
       "Country Name": "Afghanistan"
@@ -995,4 +995,5 @@
       "Country Code": "AX",
       "Country Name": "Åland Islands"
     }
-]
+];
+export default countryCodes;

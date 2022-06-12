@@ -7,6 +7,7 @@ import CardTodo from "../../components/CardTodo";
 import CardHour from "../../components/CardHour/CardHour";
 import CardTimeZones from "../../components/CardTimeZones";
 import CardCountries from "../../components/CardCountries/CardCountries";
+import countryCodes from "../../data/countryCodes";
 function DashBoardMain() {
 
     const todoList = [
@@ -25,12 +26,11 @@ function DashBoardMain() {
         'Monterrey'
     ];
 
-    const countries = [
-        {
-            img:mexicoFlag,
-            name:'México'
-        },        
-    ]
+    const countriesNames = countryCodes.map(country=>({
+        name:country['Country Name'],
+        img:`https://countryflagsapi.com/png/${country["Country Code"]}`
+    }));
+
     return (
         <main className={style.container}>
             <div className={`${style.item} ${style.informationContainer}`}>
@@ -56,7 +56,7 @@ function DashBoardMain() {
                 </div>
             </div>
             <div className={`${style.item} ${style.countriesContainer}`}>
-                <CardCountries header={'Paises disponibles'} countries={countries}/>
+                <CardCountries header={'Paises disponibles'} countries={countriesNames}/>
             </div>
         </main>
     )
