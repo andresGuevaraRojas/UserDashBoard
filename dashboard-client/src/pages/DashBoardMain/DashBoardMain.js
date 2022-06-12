@@ -4,6 +4,7 @@ import wheatherImage from "../../images/wheather.png";
 import mexicoFlag from "../../images/mexico.jpg";
 import CardCountry from "../../components/CountryCard";
 import CardTodo from "../../components/CardTodo";
+import CardHour from "../../components/CardHour/CardHour";
 function DashBoardMain() {
 
     const todoList = [
@@ -36,6 +37,7 @@ function DashBoardMain() {
                         name={'México'}             
                         img={mexicoFlag}           
                     />
+                    <CardHour header={'Hora'} hour={'11:15:15 P.M'}/>
                 </div>
             </div>
             <div className={`${style.item} ${style.countriesContainer}`}>
