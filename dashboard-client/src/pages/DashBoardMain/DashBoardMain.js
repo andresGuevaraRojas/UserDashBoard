@@ -8,6 +8,8 @@ import CardHour from "../../components/CardHour/CardHour";
 import CardTimeZones from "../../components/CardTimeZones";
 import CardCountries from "../../components/CardCountries/CardCountries";
 import countryCodes from "../../data/countryCodes";
+import {useEffect, useState} from "react"
+import TimeZonesService from "../../services/TimeZonesService";
 function DashBoardMain() {
 
     const todoList = [
@@ -20,16 +22,28 @@ function DashBoardMain() {
         'Debugger codigo',
         'Realizar pruebas unitarias'
     ];
-    const timeZones = [
-        'Ciudad de México',
-        'Tijuana',
-        'Monterrey'
-    ];
+    const [timeZones,setTimeZones] = useState([]);
+
+    const [selectedCountry,setSelectedCountry] = useState('MX');
+    const [selectedTimeZone,setSelectedTimeZone] = useState(null);
 
     const countriesNames = countryCodes.map(country=>({
         name:country['Country Name'],
         img:`https://countryflagsapi.com/png/${country["Country Code"]}`
     }));
+
+    const timeZonesName = (timeZones)=>{
+        return timeZones.map(timeZone=>timeZone.zoneName)
+    }
+    useEffect(()=>{
+
+        const fechData = async()=>{
+            const timeZonesList = await TimeZonesService.getTimeZonesByCountryCode(selectedCountry);
+            console.log(timeZonesList);
+            setTimeZones(timeZonesList);
+        }
+        fechData()     
+    },[selectedCountry])
 
     return (
         <main className={style.container}>
@@ -52,7 +66,7 @@ function DashBoardMain() {
                         img={mexicoFlag}           
                     />
                     <CardHour header={'Hora'} hour={'11:15:15 P.M'}/>
-                    <CardTimeZones header={'Zonas horarias disponibles'} timeZones={timeZones}/>
+                    <CardTimeZones header={'Zonas horarias disponibles'} timeZones={timeZonesName(timeZones)}/>
                 </div>
             </div>
             <div className={`${style.item} ${style.countriesContainer}`}>
