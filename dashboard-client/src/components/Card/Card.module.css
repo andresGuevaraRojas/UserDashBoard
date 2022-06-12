@@ -1,0 +1,12 @@
+.container{
+    min-width: 100%;
+    padding: 1rem;
+    font-family: roboto;
+    box-shadow: 1px 4px 2px #ececec;
+}
+.header{
+    padding: 0 0 1rem 0;
+    border-bottom: 2px solid #8eddf6;
+    color: #c3b9b9;
+    font-weight: bold;
+}
