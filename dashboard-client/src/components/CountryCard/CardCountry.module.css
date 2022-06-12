@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.imageContainer{
+    width: 140px;
+}
+.countryContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.image{
+    width: 100%;
+}
+.name{
+    font-size: 2rem;    
+}
+
