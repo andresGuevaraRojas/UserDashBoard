@@ -12,10 +12,11 @@
     justify-content: space-between;
 }
 .countriesContainer{
-    flex-basis: calc(20% - 2rem);
-    border: 1px solid black;
+    flex-basis: calc(20% - 2rem);    
 }
 .informationColumn{    
-    flex-basis: calc(50% - 2rem);        
-    border: 1px solid black;
+    flex-basis: calc(50% - 2rem);            
+}
+.informationColumn > *{
+    margin-bottom: 20px;
 }
