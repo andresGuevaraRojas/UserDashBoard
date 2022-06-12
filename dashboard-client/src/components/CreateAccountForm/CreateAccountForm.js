@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {isValidEmail,isValidPassword} from '../../utils/Validator'
 import style from "./CreateAccountForm.module.css";
-function CreateAccounForm({ className,onFinish }) {
+function CreateAccounForm({ className,onFinish,loading}) {
     const [inputs,setInputs] = useState({
         email:{            
             value:'',
@@ -117,9 +117,9 @@ function CreateAccounForm({ className,onFinish }) {
                     </div>                    
                 </div>                
                 <div className={style.inputGroup}>
-                    <label htmlFor="name">Contraseña</label>
+                    <label htmlFor="name">Nombre completo</label>
                     <input                        
-                        placeholder="Nombre completo"
+                        placeholder="Angel Damián Martínez Delfín"
                         name="name"
                         value={inputs.name.value}
                         onChange={handleChange}
@@ -129,7 +129,13 @@ function CreateAccounForm({ className,onFinish }) {
                         <span className={style.error}>{inputs.name.error}</span>
                     }
                 </div>
-                <button type='submit' formNoValidate>Registrarme</button>
+                <button type='submit' disabled={loading} formNoValidate>
+                    {
+                        loading?
+                        'Cargando...':
+                        'Registrarme'
+                    }
+                </button>
             </form>
         </div>
     )

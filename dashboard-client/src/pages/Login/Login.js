@@ -12,22 +12,19 @@ function Login(){
         const {email,password} = values;
         const user = await auth.login(email,password)      
         if(user != null){
-            navigate('/createAccount')
+            navigate('/dashboard')
         }
     }
     return(
         <main className={style.container}>
             <h1 className={style.item}>Bienvenido</h1>
-            <LoginForm className={style.item} onFinish={submit}/>
+            <LoginForm className={style.item} onFinish={submit} loading={auth.loading}/>
             <div className={`${style.createAccount} ${style.item}`}>
                 <span>¿No tienes cuenta?</span>
                 <Link to={'/createAccount'}>Registrarme</Link>
-            </div>
-            {auth.loading&&
-                <span>Cargando..</span>    
-            }
+            </div>            
             {auth.error&&
-                <span>{auth.error}</span>    
+                <span className={style.error}>{auth.error.message}</span>    
             }
         </main>
     )

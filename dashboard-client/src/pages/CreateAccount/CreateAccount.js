@@ -18,12 +18,9 @@ function CreateAccount(){
     return(
         <main className={style.container}>
             <h1 className={style.item}>Crear cuenta</h1>
-            <CreateAccounForm className={style.item} onFinish={submit}/>  
-            {auth.loading&&
-                <span>Cargando..</span>    
-            }
+            <CreateAccounForm className={style.item} onFinish={submit} loading = {auth.loading}/>              
             {auth.error&&
-                <span>{auth.error}</span>    
+                <span className={style.error}>{auth.error.message}</span>    
             }          
         </main>
     )

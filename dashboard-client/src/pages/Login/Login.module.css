@@ -23,3 +23,6 @@ h1{
 .createAccount a{
     text-decoration: none;
 }
+.error{
+    color: red;
+}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import style from "./LoginForm.module.css"
 import {isValidEmail,isValidPassword} from '../../utils/Validator'
-function LoginForm({className,onFinish}){
+function LoginForm({className,onFinish,loading}){
 
     const [inputs,setInputs] = useState({
         email:{            
@@ -75,7 +75,12 @@ function LoginForm({className,onFinish}){
                         <span className={style.error}>{inputs.password.error}</span>
                     }
                 </div>     
-                <button type='submit' formNoValidate>Iniciar sesión</button>           
+                <button disabled={loading} type='submit' formNoValidate>
+                    {loading?
+                        'Cargando..':
+                        'Iniciar sesión'
+                    }
+                </button>           
             </form>
         </div>
     )
