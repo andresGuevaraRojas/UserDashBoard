@@ -1,0 +1,21 @@
+.container{
+    padding: 4rem 4rem;
+    display: flex;
+    justify-content: space-between;
+}
+.item{    
+    height: 600px;
+}
+.informationContainer{
+    flex-basis: calc(80% - 2rem);  
+    display: flex;
+    justify-content: space-between;
+}
+.countriesContainer{
+    flex-basis: calc(20% - 2rem);
+    border: 1px solid black;
+}
+.informationColumn{    
+    flex-basis: calc(50% - 2rem);        
+    border: 1px solid black;
+}
