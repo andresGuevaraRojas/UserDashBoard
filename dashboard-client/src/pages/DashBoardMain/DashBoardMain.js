@@ -5,6 +5,7 @@ import mexicoFlag from "../../images/mexico.jpg";
 import CardCountry from "../../components/CountryCard";
 import CardTodo from "../../components/CardTodo";
 import CardHour from "../../components/CardHour/CardHour";
+import CardTimeZones from "../../components/CardTimeZones";
 function DashBoardMain() {
 
     const todoList = [
@@ -17,6 +18,11 @@ function DashBoardMain() {
         'Debugger codigo',
         'Realizar pruebas unitarias'
     ];
+    const timeZones = [
+        'Ciudad de México',
+        'Tijuana',
+        'Monterrey'
+    ]
     return (
         <main className={style.container}>
             <div className={`${style.item} ${style.informationContainer}`}>
@@ -38,6 +44,7 @@ function DashBoardMain() {
                         img={mexicoFlag}           
                     />
                     <CardHour header={'Hora'} hour={'11:15:15 P.M'}/>
+                    <CardTimeZones header={'Zonas horarias disponibles'} timeZones={timeZones}/>
                 </div>
             </div>
             <div className={`${style.item} ${style.countriesContainer}`}>
