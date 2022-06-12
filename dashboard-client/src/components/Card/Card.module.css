@@ -12,4 +12,8 @@
 }
 .content{
     padding: 1rem;
+    min-height: 122px;
+    height: 122px;
+    max-height: 122px;
+    overflow: auto;
 }

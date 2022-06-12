@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.imageContainer{
+    width: 100px;
+}
+.dataContainer{
+    text-align: center;
+}
+.image{
+    width: 100%;
+}
+.grades,.description{
+    display: block;
+}
+.grades{
+    font-size: 2rem;
+    font-weight: bold;
+}
+.description{
+    font-size: 1.2rem;
+}
