@@ -64,6 +64,11 @@ function DashBoardMain() {
     const [selectedTimeZone,setSelectedTimeZone] = useState(null);
     const [hour,setHour] = useState(null);
 
+    const onClickTimeZone = async(timeZone)=>{
+        const hourTimeZone = await TimeZonesService.getTimeZoneByZone(timeZone);
+        setSelectedTimeZone(timeZone);
+        setHour(hourTimeZone);
+    }
     
         
     useEffect(()=>{
@@ -99,7 +104,11 @@ function DashBoardMain() {
                         img={getCountryFlagByCountryCode(countriesData,selectedCountry)}           
                     />
                     <CardHour header={'Hora'} hour={formatHour(hour)}/>
-                    <CardTimeZones header={'Zonas horarias disponibles'} timeZones={timeZonesName(timeZones)}/>
+                    <CardTimeZones 
+                        header={'Zonas horarias disponibles'} 
+                        timeZones={timeZonesName(timeZones)}
+                        onClick={async(timeZone)=>{ await onClickTimeZone(timeZone)}}
+                    />
                 </div>
             </div>
             <div className={`${style.item} ${style.countriesContainer}`}>
