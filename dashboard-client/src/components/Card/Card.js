@@ -1,11 +1,11 @@
 import style from './Card.module.css';
-function Card({header,children}){
+function Card({header,children,className,classNameContent}){
     return(
-        <div className={style.container}>
+        <div className={`${style.container} ${className}`}>
             <div className={style.header}>
                 <span>{header}</span>
             </div>
-            <div className={style.content}>
+            <div className={classNameContent?classNameContent:style.content}>
                 {children}
             </div>
         </div>

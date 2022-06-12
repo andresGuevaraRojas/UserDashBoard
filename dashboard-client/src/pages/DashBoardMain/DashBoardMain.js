@@ -6,6 +6,7 @@ import CardCountry from "../../components/CountryCard";
 import CardTodo from "../../components/CardTodo";
 import CardHour from "../../components/CardHour/CardHour";
 import CardTimeZones from "../../components/CardTimeZones";
+import CardCountries from "../../components/CardCountries/CardCountries";
 function DashBoardMain() {
 
     const todoList = [
@@ -22,6 +23,13 @@ function DashBoardMain() {
         'Ciudad de México',
         'Tijuana',
         'Monterrey'
+    ];
+
+    const countries = [
+        {
+            img:mexicoFlag,
+            name:'México'
+        },        
     ]
     return (
         <main className={style.container}>
@@ -48,6 +56,7 @@ function DashBoardMain() {
                 </div>
             </div>
             <div className={`${style.item} ${style.countriesContainer}`}>
+                <CardCountries header={'Paises disponibles'} countries={countries}/>
             </div>
         </main>
     )
