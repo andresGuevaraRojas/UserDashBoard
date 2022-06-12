@@ -6,7 +6,7 @@ function CardTodo({ header, todoList = [] }) {
             <div className={style.container}>
                 <div className={style.todoLists}>
                     {
-                        todoList.map(todo => (<span className={style.todoItem}>{todo}</span>))
+                        todoList.map(todo => (<span className={style.todoItem} key={todo}>{todo}</span>))
                     }
                 </div>
             </div>

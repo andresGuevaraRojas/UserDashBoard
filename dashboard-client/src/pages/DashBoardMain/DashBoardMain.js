@@ -108,6 +108,7 @@ function DashBoardMain() {
                         header={'Zonas horarias disponibles'} 
                         timeZones={timeZonesName(timeZones)}
                         onClick={async(timeZone)=>{ await onClickTimeZone(timeZone)}}
+                        selectedTimeZone={selectedTimeZone}
                     />
                 </div>
             </div>
