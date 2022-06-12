@@ -3,7 +3,19 @@ import style from "./DashBoardMain.module.css";
 import wheatherImage from "../../images/wheather.png";
 import mexicoFlag from "../../images/mexico.jpg";
 import CardCountry from "../../components/CountryCard";
+import CardTodo from "../../components/CardTodo";
 function DashBoardMain() {
+
+    const todoList = [
+        'Ir al banco',
+        'Revisar balance general',
+        'Ajustar métricas de diseño',
+    ];
+    const completedTasks = [
+        'Terminar la prueba',
+        'Debugger codigo',
+        'Realizar pruebas unitarias'
+    ];
     return (
         <main className={style.container}>
             <div className={`${style.item} ${style.informationContainer}`}>
@@ -14,6 +26,9 @@ function DashBoardMain() {
                         grades={'29 C'}
                         description={'Parcialmente nublado'}
                     />
+                    <CardTodo header={'Tareas pendientes'} todoList={todoList}/>
+                    <CardTodo header={'Tareas completadas'} todoList={completedTasks}/>
+                    
                 </div>
                 <div className={style.informationColumn}> 
                     <CardCountry 
