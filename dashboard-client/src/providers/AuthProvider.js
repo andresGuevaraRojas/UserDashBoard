@@ -36,7 +36,9 @@ function useProvideAuth(){
         try {
             setLoading(true)
             const loginUser = await AuthService.login(users,email,password);
-            loginUser.lastLogin = new Date();
+            if(user){
+                loginUser.lastLogin = new Date();
+            }            
             setUser(loginUser)
             return loginUser                        
         } catch (error) {
@@ -51,7 +53,9 @@ function useProvideAuth(){
         try {
             setLoading(true)
             const newUser = await AuthService.createAccount(email,password,confirmPassword,name);
-            newUser.registrationDate = new Date();
+            if(user){
+                newUser.registrationDate = new Date();
+            }            
             setUser(newUser)            
             setUsers([...users,newUser])
             return newUser
