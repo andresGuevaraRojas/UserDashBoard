@@ -16,12 +16,16 @@ function useProvideAuth(){
         {
             name:'Steve Derbez',
             email:'steder@contoso.com',
-            password:'12345678'
+            password:'12345678',
+            lastLogin:new Date(),
+            registrationDate:new Date()
         },
         {
             name:'michael diaz',
             email:'diaz1998@contoso',
-            password:'qwertyuio'
+            password:'qwertyuio',
+            lastLogin:new Date(),
+            registrationDate:new Date()
         }
     ]);
     const [user,setUser] = useState(null);
@@ -32,6 +36,7 @@ function useProvideAuth(){
         try {
             setLoading(true)
             const loginUser = await AuthService.login(users,email,password);
+            loginUser.lastLogin = new Date();
             setUser(loginUser)
             return loginUser                        
         } catch (error) {
@@ -46,6 +51,7 @@ function useProvideAuth(){
         try {
             setLoading(true)
             const newUser = await AuthService.createAccount(email,password,confirmPassword,name);
+            newUser.registrationDate = new Date();
             setUser(newUser)            
             setUsers([...users,newUser])
             return newUser

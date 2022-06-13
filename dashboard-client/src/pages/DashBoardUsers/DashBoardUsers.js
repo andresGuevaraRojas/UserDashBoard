@@ -4,6 +4,17 @@ import style from "./DashBoardUsers.module.css";
 function DashBoardUsers(){
     const auth = useAuth();
     const {users} = auth;
+
+    const registrationDateFormat = (date)=>{        
+        return date.toLocaleDateString();
+    }
+    const lasLoginDateFormat = (date)=>{
+        const localDate =  date.toLocaleString();
+        const [dateFormat,timeFormat] = localDate.split(', ');
+        const [hour,timeZone] = timeFormat.split(' ');
+
+        return `${dateFormat} ${hour}`;
+    }
     return(
         <main className={style.container}>
             <Card header={'Lista de usuarios del sistema'} classNameContent={style.cardContent}>
@@ -22,8 +33,8 @@ function DashBoardUsers(){
                                 <tr className={style.tableRow} key={user.email}>
                                     <td className={style.tableCell}>{user.name}</td>
                                     <td className={style.tableCell}>{user.email}</td>
-                                    <td className={style.tableCell}>{user.registrationDate&&user.registrationDate}</td>
-                                    <td className={style.tableCell}>{user.lastLogin&&user.lastLogin}</td>
+                                    <td className={style.tableCell}>{user.registrationDate&&registrationDateFormat(user.registrationDate)}</td>
+                                    <td className={style.tableCell}>{user.lastLogin&&lasLoginDateFormat(user.lastLogin)}</td>
                                 </tr>
                             ))
                         }                        
