@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm';
 import style from './Login.module.css';
 import {useAuth} from '../../providers/AuthProvider'
@@ -6,6 +6,7 @@ function Login(){
 
     const auth = useAuth();
     const navigate = useNavigate();
+    const location = useLocation()
 
     const submit = async(values)=>{
         console.log(values)
@@ -25,6 +26,9 @@ function Login(){
             </div>            
             {auth.error&&
                 <span className={style.error}>{auth.error.message}</span>    
+            }
+            {location.state && location.state.from == 'createAccount'&&
+                <span>{location.state.message}</span>    
             }
         </main>
     )

@@ -12,7 +12,7 @@ function CreateAccount(){
         const user = await auth.createAccount(email,password,confirmPassword,name);
         
         if(user != null){
-            navigate('/');
+            navigate('/',{state:{message:'Registro exitoso, ahora puedes iniciar sesión',from:'createAccount'}});
         }        
     }
     return(
