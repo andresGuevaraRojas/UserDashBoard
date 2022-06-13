@@ -1,9 +1,9 @@
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useAuth } from '../../providers/AuthProvider'
 import style from './DashBoard.module.css'
 function DashBoard() {
     const auth = useAuth();
-
+    
     const location = useLocation();
 
     console.log(location)
@@ -32,6 +32,10 @@ function DashBoard() {
             shorName += firsLetter;
         }
         return shorName;
+    }
+
+    if(!auth.user){
+        return <Navigate to={'/'} replace/>
     }
     return (
         <>
