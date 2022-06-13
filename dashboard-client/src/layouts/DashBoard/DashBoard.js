@@ -1,39 +1,56 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 import { useAuth } from '../../providers/AuthProvider'
 import style from './DashBoard.module.css'
-function DashBoard(){
+function DashBoard() {
     const auth = useAuth();
 
-    const userName = auth.user?auth.user.name:'Desconocido';
+    const location = useLocation();
 
-    const getShortName = (name)=>{
+    console.log(location)
+    const userName = auth.user ? auth.user.name : 'Desconocido';
+
+    const isCurrentPage = (page) => {
+        return location.pathname == page;
+    }
+    const links = [
+        {
+            path: '/dashboard',
+            name: 'DashBoard'
+        },
+        {
+            path: '/dashboard/users',
+            name: 'Usuarios'
+        }
+    ]
+    const getShortName = (name) => {
         const nameParts = name.split(' ');
         console.log(nameParts)
         let shorName = '';
-        for (let i = 0; i<nameParts.length && i<2; i++) {
-          const part = nameParts[i];
-          const firsLetter = part[0];
-          shorName+= firsLetter;
+        for (let i = 0; i < nameParts.length && i < 2; i++) {
+            const part = nameParts[i];
+            const firsLetter = part[0];
+            shorName += firsLetter;
         }
         return shorName;
     }
-    return(
+    return (
         <>
             <nav className={style.navContainer}>
                 <ul className={style.linksContainer}>
-                    <li className={`${style.linkItem} ${style.linkItemSelected}`}>
-                        <Link to={'/dashboard'}>DashBoard</Link>
-                    </li>
-                    <li className={style.linkItem}>
-                        <Link to='users'>Usuarios</Link>
-                    </li>
+                    {
+                        links.map(link => (
+                            <li className={isCurrentPage(link.path)?`${style.linkItem} ${style.linkItemSelected}`:style.linkItem} key={link.path}>
+                                <Link to={link.path}>{link.name}</Link>
+                            </li>
+                        ))
+                    }                   
                 </ul>
                 <div className={style.userContainer}>
                     <span className={style.userLogo}>{getShortName(userName)}</span>
                     <span className={style.userName}>{userName}</span>
-                </div>                
-            </nav>    
-            <Outlet/>            
+                </div>
+            </nav>
+            <Outlet />
         </>
     )
 }
