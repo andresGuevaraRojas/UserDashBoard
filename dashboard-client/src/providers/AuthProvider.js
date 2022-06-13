@@ -59,6 +59,7 @@ function useProvideAuth(){
 
     return{        
         user,
+        users,
         loading,
         error,
         login,
