@@ -93,7 +93,7 @@ function DashBoardMain() {
                     <CardWeather
                         header={'Clima'}
                         img={wheather && wheather.current.condition.icon}
-                        grades={`${wheather && wheather.current.temp_c} C`}
+                        grades={`${wheather?wheather.current.temp_c:'00'} C`}
                         description={wheather && wheather.current.condition.text}
                     />
                     <CardTodo header={'Tareas pendientes'} todoList={todoList}/>

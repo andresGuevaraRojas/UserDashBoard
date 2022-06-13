@@ -53,7 +53,7 @@ function useProvideAuth(){
         try {
             setLoading(true)
             const newUser = await AuthService.createAccount(email,password,confirmPassword,name);
-            if(user){
+            if(newUser){
                 newUser.registrationDate = new Date();
             }            
             setUser(newUser)            
