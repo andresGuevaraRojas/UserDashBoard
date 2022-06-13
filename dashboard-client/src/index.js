@@ -9,6 +9,7 @@ import DashBoard from './layouts/DashBoard';
 import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import DashBoardMain from './pages/DashBoardMain';
+import DashBoardUsers from './pages/DashBoardUsers';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(    
@@ -24,6 +25,7 @@ root.render(
       
           <Route path='/dashboard' element={<DashBoard/>}>
             <Route index element={<DashBoardMain/>}/>
+            <Route path='users' element={<DashBoardUsers/>}/>
           </Route>
 
         </Routes>      
