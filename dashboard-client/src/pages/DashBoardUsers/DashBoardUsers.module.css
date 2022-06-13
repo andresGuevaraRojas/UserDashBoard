@@ -3,3 +3,21 @@
     display: flex;
     justify-content: space-between;
 }
+.cardContent{
+    padding: 1rem;    
+}
+.tableUsers{
+    width: 100%;
+    border-collapse: collapse;
+}
+.tableRow{   
+    border-bottom: 2px solid #8eddf6;       
+    text-align: left;
+    font-size: 1.2rem;
+}
+.tableRowBody{
+    font-weight: normal;
+}
+.tableCell{
+    padding: 1rem 0;
+}
