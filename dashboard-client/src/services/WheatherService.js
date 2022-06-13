@@ -4,7 +4,7 @@ class WheatherService{
 
     static async getCurrentWheatherByCountryName(name){
         const request = await fetch(
-            `${this.BasePath}/current.json?key=${this.ApiKey}&format=json&q${name}`,
+            `${this.BasePath}/current.json?key=${this.ApiKey}&format=json&q=${name}&lang=es`,
             {method:'GET'}
         )
 
@@ -13,3 +13,4 @@ class WheatherService{
         return weatherResponse;
     }
 }
+export default WheatherService;

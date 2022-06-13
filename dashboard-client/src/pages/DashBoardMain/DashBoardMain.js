@@ -1,7 +1,5 @@
 import CardWeather from "../../components/CardWeather/CardWeather";
 import style from "./DashBoardMain.module.css";
-import wheatherImage from "../../images/wheather.png";
-import mexicoFlag from "../../images/mexico.jpg";
 import CardCountry from "../../components/CountryCard";
 import CardTodo from "../../components/CardTodo";
 import CardHour from "../../components/CardHour/CardHour";
@@ -10,6 +8,7 @@ import CardCountries from "../../components/CardCountries/CardCountries";
 import countryCodes from "../../data/countryCodes";
 import {useEffect, useState} from "react"
 import TimeZonesService from "../../services/TimeZonesService";
+import WheatherService from "../../services/WheatherService";
 function DashBoardMain() {
 
     const todoList = [
@@ -40,7 +39,7 @@ function DashBoardMain() {
         const country = getCountryDataByCountryCode(countries,code);
         return country.img;
     }
-
+    
     const timeZonesName = (timeZones)=>{
         return timeZones.map(timeZone=>timeZone.zoneName)
     }
@@ -63,6 +62,7 @@ function DashBoardMain() {
     const [selectedCountry,setSelectedCountry] = useState('MX');
     const [selectedTimeZone,setSelectedTimeZone] = useState(null);
     const [hour,setHour] = useState(null);
+    const [wheather,setWheather] = useState(null)
 
     const onClickTimeZone = async(timeZone)=>{
         const hourTimeZone = await TimeZonesService.getTimeZoneByZone(timeZone);
@@ -73,9 +73,12 @@ function DashBoardMain() {
         
     useEffect(()=>{
         const fechData = async()=>{
-            const timeZonesList = await TimeZonesService.getTimeZonesByCountryCode(selectedCountry);                
+            const timeZonesList = await TimeZonesService.getTimeZonesByCountryCode(selectedCountry);  
+            const countryName = getCountryNameByCountryCode(countriesData,selectedCountry);
+            const wheatherData = await WheatherService.getCurrentWheatherByCountryName(countryName);
             const defaultTimeZone = getDefaultTimeZoneOfCountry(selectedCountry,timeZonesList);
             const hourTimeZone = await TimeZonesService.getTimeZoneByZone(defaultTimeZone);
+            setWheather(wheatherData);
             setTimeZones(timeZonesList);
             setSelectedTimeZone(defaultTimeZone);            
             setHour(hourTimeZone);
@@ -89,9 +92,9 @@ function DashBoardMain() {
                 <div className={style.informationColumn}>
                     <CardWeather
                         header={'Clima'}
-                        img={wheatherImage}
-                        grades={'29 C'}
-                        description={'Parcialmente nublado'}
+                        img={wheather && wheather.current.condition.icon}
+                        grades={`${wheather && wheather.current.temp_c} C`}
+                        description={wheather && wheather.current.condition.text}
                     />
                     <CardTodo header={'Tareas pendientes'} todoList={todoList}/>
                     <CardTodo header={'Tareas completadas'} todoList={completedTasks}/>
